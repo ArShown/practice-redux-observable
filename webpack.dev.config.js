@@ -13,7 +13,8 @@ const {
 module.exports = Object.assign(baseConfig, {
   output: {
     path: path.resolve(__dirname, 'output/development'),
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: '/'
   },
   devServer: {
     host: PROJECT_HOST,
