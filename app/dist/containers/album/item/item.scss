@@ -1,0 +1,24 @@
+.photo-box {
+  position: relative;
+  padding: 20px 5px 30px;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.in {
+    opacity: 1;
+  }
+
+  &-img {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    border: 10px solid #fff;
+    z-index: 3;
+  }
+}
