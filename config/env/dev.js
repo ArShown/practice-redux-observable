@@ -1,5 +1,5 @@
 /* 專案名稱 */
-const PROJECT_NAME = 'React Redux Start Kit';
+const PROJECT_NAME = 'Practice with redux-observable';
 
 /* 專案環境 */
 const PROJECT_HOST = '127.0.0.1';
@@ -12,7 +12,7 @@ const ROUTE_BASE = '/';
 const INCLUDE_ASSETS = '';
 
 /* 要打包config.js的資料夾，使用逗號區隔 */
-const BUILD_DIRECTORIES = 'containers';
+const BUILD_DIRECTORIES = 'containers,storage';
 
 /* 是否啟用 redux-devtools */
 const ENABLE_DEV_TOOLS = true;
