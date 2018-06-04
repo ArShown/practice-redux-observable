@@ -1,6 +1,6 @@
 /* @flow */
 /* constant */
-import { APPEND_ALBUM, CLEAR_ALBUM } from '~/storage/reducer/album';
+import { SAVE_PHOTO, CLEAR_PHOTO } from '~/storage/reducer/photo';
 /* action */
 import { emit } from '~/core/action/effects';
 /* helper */
@@ -10,41 +10,24 @@ import { ajax } from 'rxjs/ajax';
 import { is } from 'ramda';
 
 /* epic type */
-export const FETCH_LIST_BY_USER_ID = 'ALBUM_FETCH_LIST_BY_USER_ID';
-export const FETCH_ONE_BY_ID = 'ALBUM_FETCH_ONE_BY_ID';
-export const FETCH_SUCCESS = 'ALBUM_FETCH_SUCCESS';
-export const FETCH_FAILED = 'ALBUM_FETCH_FAILED';
-export const CLEAR_STORE = 'ALBUM_CLEAR_STORE';
+export const FETCH_ONE_BY_ALBUM_ID = 'PHOTO_FETCH_ONE_BY_ALBUM_ID';
+export const FETCH_SUCCESS = 'PHOTO_FETCH_SUCCESS';
+export const FETCH_FAILED = 'PHOTO_FETCH_FAILED';
+export const CLEAR_STORE = 'PHOTO_CLEAR_STORE';
 
-export const fetchListByUserId = (action$: any) =>
-  action$.ofType(FETCH_LIST_BY_USER_ID).pipe(
+export const fetchListByAlbumId = (action$: any) =>
+  action$.ofType(FETCH_ONE_BY_ALBUM_ID).pipe(
     switchMap(action => {
       const {
-        userId,
+        albumId,
         successCallback = res => emit(FETCH_SUCCESS, res),
         failedCallback = err => emit(FETCH_FAILED, err)
       } = action.payload;
 
       return ajax
-        .getJSON(`https://jsonplaceholder.typicode.com/albums?userId=${userId}`)
-        .pipe(
-          map(successCallback),
-          catchError(failedCallback)
-        );
-    })
-  );
-
-export const fetchOneById = (action$: any) =>
-  action$.ofType(FETCH_ONE_BY_ID).pipe(
-    switchMap(action => {
-      const {
-        id,
-        successCallback = res => emit(FETCH_SUCCESS, res),
-        failedCallback = err => emit(FETCH_FAILED, err)
-      } = action.payload;
-
-      return ajax
-        .getJSON(`https://jsonplaceholder.typicode.com/albums/${id}`)
+        .getJSON(
+          `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`
+        )
         .pipe(
           map(successCallback),
           catchError(failedCallback)
@@ -59,7 +42,7 @@ export const saveToStore = (action$: any) =>
     .pipe(
       map(action =>
         emit(
-          APPEND_ALBUM,
+          SAVE_PHOTO,
           is(Array, action.payload) ? action.payload : [action.payload]
         )
       )
@@ -76,12 +59,11 @@ export const errorEmitter = (action$: any) =>
 
 /* clear */
 export const clearStore = (action$: any) =>
-  action$.ofType(CLEAR_STORE).pipe(mapTo(emit(CLEAR_ALBUM)));
+  action$.ofType(CLEAR_STORE).pipe(mapTo(emit(CLEAR_PHOTO)));
 
 /* export epic */
 export const epics = [
-  fetchListByUserId,
-  fetchOneById,
+  fetchListByAlbumId,
   saveToStore,
   errorEmitter,
   clearStore
