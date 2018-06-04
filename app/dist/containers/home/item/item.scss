@@ -1,0 +1,40 @@
+.album-box {
+  position: relative;
+  padding: 20px 5px 30px;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &.in {
+    opacity: 1;
+  }
+
+  &-img {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    border: 10px solid #fff;
+    z-index: 3;
+    .album-box:hover & {
+      transform: scale(1.2);
+    }
+  }
+
+  &-bg {
+    position: absolute;
+    z-index: 2;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    transform: translateX(10px) translateY(-10px);
+    .album-box:hover & {
+      transform: translateX(10px) translateY(-10px) scale(1.2);
+    }
+  }
+}

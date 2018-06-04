@@ -1,12 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
 import router from '~/core/router';
-// 以下為動態資料，依需求修改 ====================================
+import Master from '~/containers/master';
 
 render(
   router({
-    //masterComponent: Master,
-    routerIndex: '/index'
+    masterComponent: Master,
+    routerIndex: '/home'
   }),
   document.getElementById('container')
 );

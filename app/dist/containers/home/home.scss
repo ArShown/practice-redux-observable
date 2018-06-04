@@ -1,0 +1,23 @@
+.fetch-more {
+  border: 1px solid #ee6e73;
+  border-radius: 5px;
+  color: #ee6e73;
+  padding: 1.1rem;
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 1.5rem auto;
+  width: 300px;
+  cursor: pointer;
+  background-color: #fff;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+  &.done {
+    border-width: 0;
+    cursor: default;
+    color: #999;
+    &:hover {
+      background-color: #fff;
+    }
+  }
+}
